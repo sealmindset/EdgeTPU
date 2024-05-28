@@ -1,4 +1,4 @@
-# Coral AI PCIe Edge TPU on Pineberry Board for a Raspberry Pi 5
+# Coral AI PCIe Edge TPU on Pineberry for a RPi 5
 
 Carefully, install the board to the Pi. 
 
