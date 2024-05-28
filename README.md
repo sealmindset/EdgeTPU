@@ -1,5 +1,26 @@
 # Setup Coral AI PCIe Accelerator on a Raspberry Pi 5
 
+## Enable Pineberry Board
+
+```
+sudo vi /boot/firmware/config.txt
+```
+
+Add the following lines to the file:
+
+```
+[all]
+# Enable the PCIe External connector.
+dtparam=pciex1
+kernel=kernel8.img
+# Enable Pineboards Hat Ai
+dtoverlay=pineboards-hat-ai
+```
+
+reboot
+
+REF: https://pineboards.io/blogs/tutorials/how-to-configure-the-google-coral-edge-tpu-on-the-raspberry-pi-5
+
 ## Install Coral AI PCIe Edge TPU on Raspberry Pi 5
 Execute the scripts below to install the drivers and tweak the OS. After each install, it will reboot.
 
