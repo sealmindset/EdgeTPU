@@ -98,6 +98,8 @@ https://dataslayer.notion.site/Setup-Coral-AI-PCIe-Accelerator-on-a-Raspberry-Pi
 
 https://gist.github.com/dataslayermedia
 
+https://github.com/dataslayermedia?tab=repositories
+
 ## Verify Camera is working
 
 ```
