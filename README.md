@@ -58,8 +58,6 @@ python verifyTPU.py
 python testCoral.py
 ```
 
-There are two approach that can be taken, the first option is to run py-env in order to use Python 3.9, the second is to run within Docker.
-
 ### Once rebooted, verify that the accelerator module is detected:
 
 ```
@@ -122,6 +120,10 @@ Capabilities: [b0] MSI-X: Enable+ Count=61 Masked-
 ```
 
 REF: https://gist.github.com/lpaolini/8652a54a36ec6b446aba18a7f483ac0b
+
+There are two approach that can be taken, the first option is to run py-env in order to use Python 3.9, the second is to run within Docker.
+
+## py-env
 
 ## Docker
 
