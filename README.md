@@ -1,4 +1,6 @@
-# Setup Coral AI PCIe Accelerator on a Raspberry Pi 5
+# Setup Coral Dual TPU on Pineberry Board for a Raspberry Pi 5
+
+Carefully, install the board to the Pi. 
 
 ## Enable Pineberry Board
 
