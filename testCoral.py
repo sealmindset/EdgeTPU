@@ -58,7 +58,7 @@ print(f"Inference time: {end_time - start_time:.5f} seconds")
 
 # Main test function
 def main():
-    print("Testing Coral USB Accelerator...")
+    print("Testing Coral...")
     input_data = preprocess_image(image_path, input_shape)
     interpreter.set_tensor(input_details[0]['index'], input_data)
     start_time = time.time()
