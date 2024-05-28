@@ -61,4 +61,7 @@ sudo dtc -I dts -O dtb ~/test.dts -o ~/test.dtb
 # Replace the old DTB with the new one 
 sudo mv ~/test.dtb /boot/firmware/bcm2712-rpi-5-b.dtb
 
+# Ensure that the library file has the correct permissions
+sudo chmod 755 /usr/lib/aarch64-linux-gnu/libedgetpu.so.1
+
 sudo reboot now
