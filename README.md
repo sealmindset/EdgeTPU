@@ -13,7 +13,7 @@ curl https://raw.githubusercontent.com/sealmindset/EdgeTPU/main/coralInstall1.sh
 ### coralInstall2
 
 ```
-curl https://raw.githubusercontent.com/sealmindset/EdgeTPU/main/coralInstall2.sh?token=GHSAT0AAAAAACSETBXDBOGOB2D4V2X6R3RSZSVHB4Q | sh
+curl https://raw.githubusercontent.com/sealmindset/EdgeTPU/main/coralInstall3.sh?token=GHSAT0AAAAAACSETBXC3UKAL6AQV74CWGKSZSVHC7Q | sh
 ```
 
 ### coralInstall3
