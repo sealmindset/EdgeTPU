@@ -73,7 +73,7 @@ You should see something like this:
 ## Give permissions to the /dev/apex_0 device 
 
 ### creating a new udev rule:
-Open a terminal and use your favorite text editor with sudo to create a new file in /etc/udev/rules.d/. The file name should end with .rules. It's common practice to start custom rules with a higher number (e.g., 99-) to ensure they are applied after the default rules. For example:
+Create a new file in /etc/udev/rules.d/. The file name should end with .rules. It's common practice to start custom rules with a higher number (e.g., 99-) to ensure they are applied after the default rules. For example:
 
 ```
 sudo vi /etc/udev/rules.d/101-coral-edgetpu.rules
@@ -81,17 +81,15 @@ sudo vi /etc/udev/rules.d/101-coral-edgetpu.rules
 
 #### Add a rule to the file:
 
-You'll need to identify your device by attributes like idVendor and idProduct or use the KERNEL attribute if the device path is consistent. For the Coral Edge TPU, using the device path /dev/apex_0 directly in a udev rule is not standard because this path might not be persistent across reboots or other device changes. Instead, use attributes to match the device.
-
-However, since we're dealing with a specific device path here, your rule might look something like this, assuming /dev/apex_0 is consistently named and you're setting permissions:
+Add the following to `/etc/udev/rules.d/101-coral-edgetpu.rules`:
 
 ```
 KERNEL=="apex_0", MODE="0666"
 ```
 
-This rule sets the device file /dev/apex_0 to be readable and writable by everyone. Adjust the MODE as necessary for your security requirements.
+This rule sets the device file /dev/apex_0 to be readable and writable by everyone. 
 
-Reload the udev rules and trigger them: After saving the file, you need to reload the udev rules and trigger them to apply the changes without rebooting. Reload the rules:
+Reload the udev rules and trigger them to apply the changes without rebooting.
 
 ```
 sudo udevadm control --reload-rules
