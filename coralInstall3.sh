@@ -11,8 +11,9 @@ curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 
 sudo apt-get update
 
-
 sudo apt-get install libedgetpu1-std
+
+pip install --upgrade tflite-runtime
 
 sudo apt install -y devscripts debhelper
 
@@ -35,13 +36,11 @@ cd ..
 # Install the built Gasket driver package
 sudo dpkg -i gasket-dkms_1.0-18_all.deb
 
-
 sudo sh -c "echo 'SUBSYSTEM==\"apex\", MODE=\"0660\", GROUP=\"apex\"' >> /etc/udev/rules.d/65-apex.rules"
 
 sudo groupadd apex
 
 sudo adduser $USER apex
-
 
 # Update the boot configuration for Raspberry Pi
 echo "kernel=kernel8.img" | sudo tee -a /boot/firmware/config.txt
@@ -67,5 +66,7 @@ sudo chmod 755 /usr/lib/aarch64-linux-gnu/libedgetpu.so.1
 # Make sure all dependencies for the Edge TPU runtime are installed. 
 ldd /usr/lib/aarch64-linux-gnu/libedgetpu.so.1
 
+# Ensure the Edge TPU driver is installed and running.
+ls /dev/apex_0
 
 sudo reboot now
