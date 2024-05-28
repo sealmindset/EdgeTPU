@@ -96,6 +96,8 @@ python3 /usr/share/edgetpu/examples/classify_image.py --model /usr/share/edgetpu
 
 https://dataslayer.notion.site/Setup-Coral-AI-PCIe-Accelerator-on-a-Raspberry-Pi-5-use-it-with-Frigate-and-PyCoral-68bf94868cf84731860318e52c9c398a
 
+https://gist.github.com/dataslayermedia
+
 ## Verify Camera is working
 
 ```
