@@ -13,7 +13,7 @@ sudo apt-get update
 
 sudo apt-get install libedgetpu1-std
 
-pip install --upgrade tflite-runtime
+pip install --upgrade tflite-runtime --break-system-packages
 
 sudo apt install -y devscripts debhelper
 
