@@ -58,16 +58,10 @@ python verifyTPU.py
 python testCoral.py
 ```
 
-### Once rebooted, verify that the accelerator module is detected:
+### Once rebooted, verify the TPU is detected:
 
 ```
-lspci -nn | grep 089a
-```
-
-You should see something like this:
-
-```
-03:00.0 System peripheral: Device 1ac1:089a
+ls -l /dev/apex_0
 ```
 
 ## Give permissions to the /dev/apex_0 device 
