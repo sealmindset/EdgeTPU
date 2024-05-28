@@ -60,26 +60,6 @@ python testCoral.py
 
 There are two approach that can be taken, the first option is to run py-env in order to use Python 3.9, the second is to run within Docker.
 
-## Create a `Dockerfile`
-
-### Dockerfile
-
-```
-FROM debian:10
-
-WORKDIR /home
-ENV HOME /home
-RUN cd ~
-RUN apt-get update
-RUN apt-get install -y git nano python3-pip python-dev pkg-config wget usbutils curl
-
-RUN echo "deb https://packages.cloud.google.com/apt coral-edgetpu-stable main" \
-| tee /etc/apt/sources.list.d/coral-edgetpu.list
-RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
-RUN apt-get update
-RUN apt-get install -y edgetpu-examples
-```
-
 ### Once rebooted, verify that the accelerator module is detected:
 
 ```
@@ -150,7 +130,29 @@ sudo apt update
 sudo apt install docker.io
 ```
 
+### Create a `Dockerfile`
+
+##### Dockerfile
+
+```
+FROM debian:10
+
+WORKDIR /home
+ENV HOME /home
+RUN cd ~
+RUN apt-get update
+RUN apt-get install -y git nano python3-pip python-dev pkg-config wget usbutils curl
+
+RUN echo "deb https://packages.cloud.google.com/apt coral-edgetpu-stable main" \
+| tee /etc/apt/sources.list.d/coral-edgetpu.list
+RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+RUN apt-get update
+RUN apt-get install -y edgetpu-examples
+```
+
 ### Verify Docker is working
+
+
 
 #### Become root
 
