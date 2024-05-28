@@ -96,3 +96,13 @@ python3 /usr/share/edgetpu/examples/classify_image.py --model /usr/share/edgetpu
 
 https://dataslayer.notion.site/Setup-Coral-AI-PCIe-Accelerator-on-a-Raspberry-Pi-5-use-it-with-Frigate-and-PyCoral-68bf94868cf84731860318e52c9c398a
 
+## Verify Camera is working
+
+```
+rpicam-hello -n --timeout 20
+```
+
+#### Reference
+
+https://www.raspberrypi.com/documentation/computers/camera_software.html#building-rpicam-apps-without-building-libcamera
+
