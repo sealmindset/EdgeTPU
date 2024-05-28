@@ -29,7 +29,7 @@ curl https://raw.githubusercontent.com/sealmindset/EdgeTPU/main/coralInstall1.sh
 python verifyTPU.py
 ```
 
-## Test Coral to see it works
+## Test Coral to see if it works
 
 ```
 python testCoral.py
