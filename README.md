@@ -67,7 +67,58 @@ You should see something like this:
 03:00.0 System peripheral: Device 1ac1:089a
 ```
 
-## Install Docker
+## Give permissions to the /dev/apex_0 device 
+
+### creating a new udev rule:
+Open a terminal and use your favorite text editor with sudo to create a new file in /etc/udev/rules.d/. The file name should end with .rules. It's common practice to start custom rules with a higher number (e.g., 99-) to ensure they are applied after the default rules. For example:
+
+```
+sudo vi /etc/udev/rules.d/101-coral-edgetpu.rules
+```
+
+#### Add a rule to the file:
+
+You'll need to identify your device by attributes like idVendor and idProduct or use the KERNEL attribute if the device path is consistent. For the Coral Edge TPU, using the device path /dev/apex_0 directly in a udev rule is not standard because this path might not be persistent across reboots or other device changes. Instead, use attributes to match the device.
+
+However, since we're dealing with a specific device path here, your rule might look something like this, assuming /dev/apex_0 is consistently named and you're setting permissions:
+
+```
+KERNEL=="apex_0", MODE="0666"
+```
+
+This rule sets the device file /dev/apex_0 to be readable and writable by everyone. Adjust the MODE as necessary for your security requirements.
+
+Reload the udev rules and trigger them: After saving the file, you need to reload the udev rules and trigger them to apply the changes without rebooting. Reload the rules:
+
+```
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+```
+
+#### Verify /dev/apex_0 and MSI-X are enabled:
+
+Verify that the permissions for /dev/apex_0 are set as expected. After rebooting, check the permissions of the device file:
+
+```
+ls -l /dev/apex_0
+```
+
+Also verify all Message Signaled Interrupts (MSI) are enabled:
+
+```
+sudo lspci -vvv|grep -i MSI-X
+```
+
+You should see something like this, where + indicates that MSI-X is enabled and - indicates that it's disabled:
+
+```
+Capabilities: [d0] MSI-X: Enable+ Count=128 Masked-
+Capabilities: [b0] MSI-X: Enable+ Count=61 Masked-
+```
+
+REF: https://gist.github.com/lpaolini/8652a54a36ec6b446aba18a7f483ac0b
+
+## Docker
 
 ```
 sudo apt update
