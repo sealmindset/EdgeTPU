@@ -1,4 +1,4 @@
-# Setup Coral Dual TPU on Pineberry Board for a Raspberry Pi 5
+# Coral AI PCIe Edge TPU on Pineberry Board for a Raspberry Pi 5
 
 Carefully, install the board to the Pi. 
 
@@ -19,11 +19,11 @@ kernel=kernel8.img
 dtoverlay=pineboards-hat-ai
 ```
 
-reboot
+Reboot
 
 REF: https://pineboards.io/blogs/tutorials/how-to-configure-the-google-coral-edge-tpu-on-the-raspberry-pi-5
 
-## Install Coral AI PCIe Edge TPU on Raspberry Pi 5
+## Install Coral AI PCIe Edge TPU Drivers
 Execute the scripts below to install the drivers and tweak the OS. After each install, it will reboot.
 
 NOTE: TODO - combine all 3 into one
@@ -57,6 +57,8 @@ python verifyTPU.py
 ```
 python testCoral.py
 ```
+
+There are two approach that can be taken, the first option is to run py-env in order to use Python 3.9, the second is to run within Docker.
 
 ## Create a `Dockerfile`
 
