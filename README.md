@@ -23,7 +23,7 @@ Reboot
 
 REF: https://pineboards.io/blogs/tutorials/how-to-configure-the-google-coral-edge-tpu-on-the-raspberry-pi-5
 
-## Install Coral AI PCIe Edge TPU Drivers
+## Install Coral Drivers
 Execute the scripts below to install the drivers and tweak the OS. After each install, it will reboot.
 
 NOTE: TODO - combine all 3 into one
