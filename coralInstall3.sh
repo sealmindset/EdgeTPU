@@ -64,4 +64,8 @@ sudo mv ~/test.dtb /boot/firmware/bcm2712-rpi-5-b.dtb
 # Ensure that the library file has the correct permissions
 sudo chmod 755 /usr/lib/aarch64-linux-gnu/libedgetpu.so.1
 
+# Make sure all dependencies for the Edge TPU runtime are installed. 
+ldd /usr/lib/aarch64-linux-gnu/libedgetpu.so.1
+
+
 sudo reboot now
