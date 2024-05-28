@@ -55,6 +55,18 @@ RUN apt-get update
 RUN apt-get install -y edgetpu-examples
 ```
 
+### Once rebooted, verify that the accelerator module is detected:
+
+```
+lspci -nn | grep 089a
+```
+
+You should see something like this:
+
+```
+03:00.0 System peripheral: Device 1ac1:089a
+```
+
 ## Install Docker
 
 ```
