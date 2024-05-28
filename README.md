@@ -35,4 +35,64 @@ python verifyTPU.py
 python testCoral.py
 ```
 
+## Create a `Dockerfile`
+
+### Dockerfile
+
+```
+FROM debian:10
+
+WORKDIR /home
+ENV HOME /home
+RUN cd ~
+RUN apt-get update
+RUN apt-get install -y git nano python3-pip python-dev pkg-config wget usbutils curl
+
+RUN echo "deb https://packages.cloud.google.com/apt coral-edgetpu-stable main" \
+| tee /etc/apt/sources.list.d/coral-edgetpu.list
+RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+RUN apt-get update
+RUN apt-get install -y edgetpu-examples
+```
+
+## Install Docker
+
+```
+sudo apt update
+sudo apt install docker.io
+```
+
+### Verify Docker is working
+
+#### Become root
+
+```
+sudo sudo -s
+```
+
+#### Check docker
+
+```
+docker ps -a
+```
+
+### Build and tag docker image
+
+```
+docker build -t "coral" .
+```
+
+### Run and enter container
+
+```
+docker run -it --device /dev/apex_0:/dev/apex_0 coral /bin/bash
+```
+
+```
+python3 /usr/share/edgetpu/examples/classify_image.py --model /usr/share/edgetpu/examples/models/mobilenet_v2_1.0_224_inat_bird_quant_edgetpu.tflite --label /usr/share/edgetpu/examples/models/inat_bird_labels.txt --image /usr/share/edgetpu/examples/images/bird.bmp
+```
+
+## Data Slayer
+
+https://dataslayer.notion.site/Setup-Coral-AI-PCIe-Accelerator-on-a-Raspberry-Pi-5-use-it-with-Frigate-and-PyCoral-68bf94868cf84731860318e52c9c398a
 
