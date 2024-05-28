@@ -4,7 +4,20 @@ Execute the script below to install the drivers and tweak the OS.
 
 Install Coral AI PCIe Edge TPU on Raspberry Pi 5
 
-```
-curl | sh
+### coralInstall1
 
+```
+curl https://raw.githubusercontent.com/sealmindset/EdgeTPU/main/coralInstall1.sh?token=GHSAT0AAAAAACSETBXD7HJN6OEZMKUBWTMAZSVG76A | sh
+```
+
+### coralInstall2
+
+```
+curl https://raw.githubusercontent.com/sealmindset/EdgeTPU/main/coralInstall1.sh?token=GHSAT0AAAAAACSETBXD7HJN6OEZMKUBWTMAZSVG76A | sh
+```
+
+### coralInstall3
+
+```
+curl https://raw.githubusercontent.com/sealmindset/EdgeTPU/main/coralInstall1.sh?token=GHSAT0AAAAAACSETBXD7HJN6OEZMKUBWTMAZSVG76A | sh
 ```
