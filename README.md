@@ -2,6 +2,8 @@
 
 https://pineboards.io/pages/documentation-hat-ai-dual
 
+https://coral.ai/docs/notes/build-coral/
+
 https://www.youtube.com/watch?v=3YqbO2AlepM
 
 https://github.com/freedomwebtech/tflite-custom-object-bookworm
