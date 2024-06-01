@@ -52,4 +52,62 @@ sudo pip install opencv-python
 sudo pip install mediapipe
 ```
 
+## Test
+```
+python txt_detect.py --recordduration 60
+```
+
+## TensorFlow
+
+### Install HDF5 Library:
+
+```
+sudo apt-get update && sudo apt-get install libhdf5-dev
+```
+
+### Test HDF5
+Ensure that the HDF5 library is properly installed. You can verify this by checking if the libhdf5.so file is present in your library directories.
+
+```
+find /usr/lib /usr/local/lib -name 'libhdf5*'
+```
+
+#### Reinstall h5py:
+After installing the HDF5 library, try installing h5py again using pip.
+
+```
+ssh pip install h5py
+```
+
+##### Set Environment Variables (if necessary):
+If the library is installed but not found, you might need to set the HDF5_DIR environment variable to the location of the HDF5 installation.
+
+```
+export HDF5_DIR=/usr/local/hdf5
+```
+
+```
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/hdf5/lib
+```
+
+## Install TensorFlow
+```
+sudo pip install tensorflow
+```
+
+### Install picamera2
+```
+sudo apt update
+```
+```
+sudo apt install -y python3-picamera2
+```
+```
+sudo pip install matplotlib
+```
+
+
+
+
+
 
