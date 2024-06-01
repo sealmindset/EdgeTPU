@@ -95,6 +95,18 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/hdf5/lib
 sudo pip install tensorflow
 ```
 
+### Install picamera2
+```
+sudo apt update
+```
+```
+sudo apt install -y python3-picamera2
+```
+```
+sudo pip install matplotlib
+```
+
+
 
 
 
