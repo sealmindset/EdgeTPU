@@ -1,5 +1,7 @@
 # Pineberry Pi Dual Edge TPU
 
+https://downloads.raspberrypi.com/raspios_full_arm64/images/raspios_full_arm64-2024-03-15/
+
 https://pineboards.io/pages/documentation-hat-ai-dual
 
 https://coral.ai/docs/notes/build-coral/
@@ -15,7 +17,17 @@ https://dataslayer.notion.site/Setup-Coral-AI-PCIe-Accelerator-on-a-Raspberry-Pi
 https://www.youtube.com/watch?v=QmUJOFHr-No
 
 ## Image the lastest RPI distro
-Create a image to a SD Card.
+Create a image to a SD Card. Download it locally.
+
+```
+wget -c https://downloads.raspberrypi.com/raspios_full_arm64/images/raspios_full_arm64-2024-03-15/2024-03-15-raspios-bookworm-arm64-full.img.xz
+```
+
+In the Raspberry Pi Imager choose - 'Use Custom'
+
+```
+sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y
+```
 
 ## Upgrade to the lastest distro
 
