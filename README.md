@@ -47,6 +47,43 @@ sudo reboot
 sudo rpi-update
 ```
 
+## Python 3.9.0
+### Dependencies
+Make sure you have all necessary dependencies installed:
+```
+sudo apt update
+```
+```
+sudo apt install -y build-essential libssl-dev zlib1g-dev libncurses5-dev libncursesw5-dev libreadline-dev libsqlite3-dev libgdbm-dev libdb5.3-dev libbz2-dev libexpat1-dev liblzma-dev tk-dev libffi-dev tar wget vim
+```
+
+### Download Python 3.9.0
+Download the source code and extract Python 3.9.0
+```
+wget https://www.python.org/ftp/python/3.9.0/Python-3.9.0.tar.xz
+```
+```
+tar -xvf Python-3.7.9.tgz
+```
+```
+cd Python-3.9.0/
+```
+### Configure
+```
+./configure --enable-optimizations
+```
+```
+make -j 4  # Use the number of cores you have
+```
+```
+sudo make altinstall
+```
+### Set the New Python Version as Default:
+```
+sudo update-alternatives --install /usr/bin/python3 python3 /usr/local/bin/python3.9 1
+sudo update-alternatives --config python3
+```
+
 ### remove the req to add --break-system-packages
 
 ```
