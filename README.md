@@ -1,11 +1,14 @@
 # Pineberry Pi Dual Edge TPU
 
 ## bookworm - Debian 12
+
 https://downloads.raspberrypi.com/raspios_full_arm64/images/raspios_full_arm64-2024-03-15/
 
-##buster - Debian 10
+## buster - Debian 10
+
 https://downloads.raspberrypi.org/raspios_arm64/images/raspios_arm64-2020-08-24/
 
+## Other
 https://pineboards.io/pages/documentation-hat-ai-dual
 
 https://coral.ai/docs/notes/build-coral/
