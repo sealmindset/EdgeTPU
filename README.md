@@ -23,65 +23,34 @@ Create a image to a SD Card. Download it locally.
 wget -c https://downloads.raspberrypi.com/raspios_full_arm64/images/raspios_full_arm64-2024-03-15/2024-03-15-raspios-bookworm-arm64-full.img.xz
 ```
 
-In the Raspberry Pi Imager choose - 'Use Custom'
+In the Raspberry Pi Imager choose - 'Use Custom'. 
+
+## Initial Boot
+
+Remove Python 3.11
 
 ```
-sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y
+sudo ./remove_python.sh
 ```
 
-## Upgrade to the lastest distro
+Install Python 3.9.0
 
 ```
-sudo apt update && sudo apt dist-upgrade -y && sudo apt clean -y
-
+sudo ./install_python.sh
 ```
 
-#### Reboot
 ```
-sudo reboot
-```
-
-### Update
-
-```
-sudo rpi-update
+sudo ln -s /usr/local/bin/python3.9 /usr/bin/python3
 ```
 
-## Python 3.9.0
-### Dependencies
-Make sure you have all necessary dependencies installed:
 ```
-sudo apt update
-```
-```
-sudo apt install -y build-essential libssl-dev zlib1g-dev libncurses5-dev libncursesw5-dev libreadline-dev libsqlite3-dev libgdbm-dev libdb5.3-dev libbz2-dev libexpat1-dev liblzma-dev tk-dev libffi-dev tar wget vim
+sudo ln -s /usr/local/bin/python3.9 /usr/bin/python
 ```
 
-### Download Python 3.9.0
-Download the source code and extract Python 3.9.0
+Verify there are no lingering Python 3.11 dependencies
+
 ```
-wget https://www.python.org/ftp/python/3.9.0/Python-3.9.0.tar.xz
-```
-```
-tar -xvf Python-3.7.9.tgz
-```
-```
-cd Python-3.9.0/
-```
-### Configure
-```
-./configure --enable-optimizations
-```
-```
-make -j 4  # Use the number of cores you have
-```
-```
-sudo make altinstall
-```
-### Set the New Python Version as Default:
-```
-sudo update-alternatives --install /usr/bin/python3 python3 /usr/local/bin/python3.9 1
-sudo update-alternatives --config python3
+sudo python3 chk_py3.11_dep.py
 ```
 
 ### remove the req to add --break-system-packages
@@ -115,7 +84,7 @@ sudo apt-get update && sudo apt-get install libhdf5-dev
 ```
 
 ### Test HDF5
-Ensure that the HDF5 library is properly installed. You can verify this by checking if the libhdf5.so file is present in your library directories.
+Ensure that the HDF5 library is properly installed.
 
 ```
 find /usr/lib /usr/local/lib -name 'libhdf5*'
@@ -125,37 +94,26 @@ find /usr/lib /usr/local/lib -name 'libhdf5*'
 After installing the HDF5 library, try installing h5py again using pip.
 
 ```
-ssh pip install h5py
-```
-
-##### Set Environment Variables (if necessary):
-If the library is installed but not found, you might need to set the HDF5_DIR environment variable to the location of the HDF5 installation.
-
-```
-export HDF5_DIR=/usr/local/hdf5
-```
-
-```
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/hdf5/lib
+pip install h5py
 ```
 
 ## Install TensorFlow
 ```
-sudo pip install tensorflow
+pip install tensorflow
 ```
 
 ### Install picamera2
 ```
-sudo apt update
+sudo apt update && sudo apt install -y python3-picamera2
 ```
 ```
-sudo apt install -y python3-picamera2
-```
-```
-sudo pip install matplotlib
+pip install matplotlib
 ```
 
-
+## Install PyCoral
+```
+sudo apt-get install python3-pycoral
+```
 
 
 
