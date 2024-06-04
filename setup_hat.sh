@@ -82,4 +82,4 @@ else
 fi
 
 # Reboot the system
-sudo reboot
+echo "sudo reboot"
