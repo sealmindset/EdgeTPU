@@ -7,7 +7,7 @@ ENV HOME /home
 
 # Install necessary packages
 RUN apt-get update && \
-    apt-get install -y git nano python3-pip python-dev pkg-config wget curl dkms rsync build-essential cmake unzip
+    apt-get install -y git vim python3-pip python-dev pkg-config wget curl dkms rsync build-essential cmake unzip
 
 # Install zlib and other required libraries
 RUN apt-get install -y zlib1g-dev libjpeg-dev libpng-dev
@@ -33,20 +33,20 @@ RUN echo 'SUBSYSTEM=="pci", ATTRS{vendor}=="0x1ac1", ATTRS{device}=="0x089a", MO
 # Install Docker-specific dependencies (if needed)
 RUN apt-get install -y docker.io
 
-# Install Python packages
+# Download and install tflite-runtime
+RUN wget https://github.com/google-coral/pycoral/releases/download/release-frogfish/tflite_runtime-2.5.0-cp37-cp37m-linux_aarch64.whl
+RUN pip3 install tflite_runtime-2.5.0-cp37-cp37m-linux_aarch64.whl
+
+# Install numpy and pillow
 RUN pip3 install numpy pillow
 
-# Download TensorFlow Lite source and build it
-RUN wget -O tensorflow.zip https://github.com/tensorflow/tensorflow/archive/v2.5.0.zip && \
-    unzip tensorflow.zip && \
-    mv tensorflow-2.5.0 tensorflow && \
-    cd tensorflow && \
-    ./tensorflow/lite/tools/make/download_dependencies.sh && \
-    ./tensorflow/lite/tools/make/build_aarch64_lib.sh
+# Remove the EXTERNALLY-MANAGED file if it exists
+RUN if [ -f /usr/lib/python3.11/EXTERNALLY-MANAGED ]; then \
+        rm /usr/lib/python3.11/EXTERNALLY-MANAGED; \
+    fi
 
-# Copy the built TensorFlow Lite library
-RUN cp /home/tensorflow/tensorflow/lite/tools/make/gen/linux_aarch64/lib/libtensorflow-lite.a /usr/local/lib/
-RUN cp -r /home/tensorflow/tensorflow/lite/tools/make/gen/linux_aarch64/lib/* /usr/local/lib/
+# Download the TensorFlow Lite model
+RUN wget -O efficientdet_lite0.tflite https://github.com/schu-lab/Tensorflow-Object-Detection/raw/main/efficientdet_lite0.tflite
 
 # Expose necessary ports (if applicable)
 EXPOSE 8080
