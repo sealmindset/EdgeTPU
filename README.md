@@ -5,7 +5,7 @@ Raspberry Pi 5
 
 Pineboard Coral Edge TPU HAT (Dual TPU Compatible)
 
-Lastest Raspberry Pi Bookworm - 64 bit (e.g., 6.6.31+rpt-rpi-2712 aarch64)
+Raspberry Pi Bookworm - 64 bit 
 
 #### Pineboards Ref:
 
