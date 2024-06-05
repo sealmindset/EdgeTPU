@@ -17,7 +17,13 @@ https://coral.ai/docs/notes/build-coral/
 
 https://www.diyengineers.com/2024/05/18/setup-coral-tpu-usb-accelerator-on-raspberry-pi-5/
 
-## Image the lastest RPI distro
+## Image the RPI distro
+### Download the image locally
+
+https://www.raspberrypi.com/software/operating-systems/
+
+### Choose 'Use Custom' from the RPI Imager
+
 Write the RPI image to a SD Card. 
 
 ## Initial Boot
