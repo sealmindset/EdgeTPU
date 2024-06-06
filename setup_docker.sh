@@ -110,6 +110,9 @@ RUN git clone https://github.com/google-coral/examples-camera --depth 1
 RUN pip3 install opencv-contrib-python
 RUN apt-get install python3-opencv
 
+# Tensorflow
+RUN pip3 install tensorflow
+
 # Create a directory for the Pycoral scripts
 WORKDIR /pycoral
 
