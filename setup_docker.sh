@@ -61,6 +61,9 @@ RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 RUN apt-get update
 RUN pip3 install pycoral
 
+RUN apt-get update
+RUN apt-get install python3-tflite-runtime
+
 # Create a directory for the Pycoral scripts
 WORKDIR /pycoral
 
