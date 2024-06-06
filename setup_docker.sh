@@ -28,6 +28,7 @@ RUN sudo apt install build-essential \
     libffi-dev \
     curl \
     wget \
+    pciutils \
     libbz2-dev
 
 # Install Python 3.9
