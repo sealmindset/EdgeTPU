@@ -41,6 +41,9 @@ RUN make altinstall
 RUN ln -s /usr/local/bin/python3.9 /usr/local/bin/python3
 RUN ln -s /usr/local/bin/python3.9 /usr/local/bin/python
 
+RUN apt-get update && apt-get install python3-pip
+RUN python -m pip install --upgrade pip
+
 # Install dependencies
 RUN apt-get update && apt-get install -y \
     libedgetpu1-std \
@@ -55,10 +58,8 @@ RUN echo "deb https://packages.cloud.google.com/apt coral-edgetpu-stable main" |
 RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 
 # Install Pycoral
+RUN apt-get update
 RUN pip3 install pycoral
-
-# Set the default Python version to 3.9
-RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.9 1
 
 # Create a directory for the Pycoral scripts
 WORKDIR /pycoral
@@ -69,9 +70,3 @@ COPY . /pycoral
 # Set the entrypoint
 ENTRYPOINT ["python3"]
 EOF
-
-# Build the Docker image
-docker build -t pycoral:debian-bullseye .
-
-# Run a container from the image
-docker run -it --rm --privileged --device /dev/apex_0:/dev/apex_0 debian:10
