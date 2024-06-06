@@ -14,19 +14,42 @@ newgrp docker
 
 # Create a Dockerfile for Pycoral
 cat <<EOF > Dockerfile
-FROM debian:bullseye
+FROM debian:10
+
+# Python dependencies
+RUN sudo apt install build-essential \
+    zlib1g-dev \
+    libncurses5-dev \
+    libgdbm-dev \
+    libnss3-dev \
+    libssl-dev \
+    libsqlite3-dev \
+    libreadline-dev \
+    libffi-dev \
+    curl \
+    wget \
+    libbz2-dev
+
+# Install Python 3.9
+RUN wget https://www.python.org/ftp/python/3.9.1/Python-3.9.1.tgz
+
+RUN tar -xzvf Python-3.9.1.tgz && cd Python-3.9.1
+RUN ./configure --enable-optimizations
+RUN make -j 4
+RUN make altinstall
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
-    python3.9 \
-    python3-pip \
     libedgetpu1-std \
+    gnupg \
+    gnupg2 \
+    gnupg1 \
     && apt-get clean
 
-# Remove the EXTERNALLY-MANAGED file if it exists
-RUN if [ -f /usr/lib/python3.11/EXTERNALLY-MANAGED ]; then \
-        rm /usr/lib/python3.11/EXTERNALLY-MANAGED; \
-    fi
+RUN echo "deb https://packages.cloud.google.com/apt coral-edgetpu-stable main" | \
+    tee /etc/apt/sources.list.d/coral-edgetpu.list
+
+RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 
 # Install Pycoral
 RUN pip3 install pycoral
