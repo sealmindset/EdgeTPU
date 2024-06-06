@@ -29,6 +29,7 @@ RUN sudo apt install build-essential \
     curl \
     wget \
     pciutils \
+    kmod \
     libbz2-dev
 
 # Install Python 3.9
