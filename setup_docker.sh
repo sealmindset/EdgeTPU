@@ -32,6 +32,8 @@ RUN sudo apt install build-essential \
     kmod \
     libbz2-dev
 
+RUN apt-get install -y libtbb2 libtbb-dev libdc1394-22-dev
+
 # Install Python 3.9
 RUN wget https://www.python.org/ftp/python/3.9.1/Python-3.9.1.tgz
 
