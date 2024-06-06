@@ -38,6 +38,9 @@ RUN ./configure --enable-optimizations
 RUN make -j 4
 RUN make altinstall
 
+RUN ln -s /usr/local/bin/python3.9 /usr/local/bin/python3
+RUN ln -s /usr/local/bin/python3.9 /usr/local/bin/python
+
 # Install dependencies
 RUN apt-get update && apt-get install -y \
     libedgetpu1-std \
