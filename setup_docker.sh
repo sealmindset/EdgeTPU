@@ -48,4 +48,4 @@ EOF
 docker build -t pycoral:debian-bullseye .
 
 # Run a container from the image
-docker run -it --rm --privileged --device /dev/apex_0:/dev/apex_0 pycoral:debian-bullseye
+docker run -it --rm --privileged --device /dev/apex_0:/dev/apex_0 debian:10
