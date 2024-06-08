@@ -1,23 +1,17 @@
 # Pineberry Pi Dual Edge TPU
 
 ## Preq:
-Raspberry Pi 5
-
-Pineboard Coral Edge TPU HAT (Dual TPU Compatible)
-
-Raspberry Pi Bookworm - 64 bit 
+- Raspberry Pi 5
+- Pineboard Coral Edge TPU HAT (Dual TPU Compatible)
+- Raspberry Pi Bookworm - 64 bit
+- Debian 1:6.6.31-1+rpt1 aarch64
+- Python 3.11.2
 
 #### Pineboards Ref:
 
-https://pineboards.io/pages/documentation-hat-ai-dual
+https://pineboards.io/blogs/tutorials/how-to-configure-the-google-coral-edge-tpu-on-the-raspberry-pi-5
 
-https://coral.ai/docs/notes/build-coral/
-
-#### Docker Ref:
-
-https://www.diyengineers.com/2024/05/18/setup-coral-tpu-usb-accelerator-on-raspberry-pi-5/
-
-## Image the RPI distro
+## Configure the Google Dual Coral Edge TPU on the Raspberry Pi 5
 ### Download the image locally
 
 https://www.raspberrypi.com/software/operating-systems/
@@ -27,35 +21,84 @@ https://www.raspberrypi.com/software/operating-systems/
 Write the RPI image to a SD Card. 
 
 ## Initial Boot
-### Run setup_hat.sh
+### Configure Hardware Settings
+#### Step 1: Configure Hardware Settings
+
 ```
-sudo bash setup_hat.sh
+sudo sed -i '/\[all\]/a # Enable the PCIe External connector.\ndtparam=pciex1\nkernel=kernel8.img\n# Enable Pineboards Hat Ai\ndtoverlay=pineboards-hat-ai' /boot/firmware/config.txt
 ```
 
-### Run chk_coral.sh
+#### Step 2: Update the Kernel
+
 ```
-sudo bash chk_coral.sh
+sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y && apt autoremove -y
 ```
 
-### Run setup_docker.sh
 ```
-sudo bash setup_docker.sh
-```
-
-## Docker
-### Build
-```
-sudo docker build -t "coral" .
+sudo reboot
 ```
 
-### Run
+### Step 3: Install the PCIe Driver and Edge TPU Runtime
 ```
-sudo docker run -it --device /dev/apex_0:/dev/apex_0 --device /dev/apex_1:/dev/apex_1 coral
+sudo apt update
 ```
 
-### Test TPU
+#### Add the Google Coral Edge TPU package repository:
 ```
-python3 test_tpu.py
+echo "deb https://packages.cloud.google.com/apt coral-edgetpu-stable main" | sudo tee /etc/apt/sources.list.d/coral-edgetpu.list
+```
+
+#### Import the repository GPG key:
+```
+curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+```
+
+```
+sudo apt-get update
+```
+
+#### Install necessary packages:
+```
+sudo apt-get install cmake libedgetpu1-std devscripts debhelper dkms dh-dkms
+```
+
+### Step 4: Install the Gasket Driver
+```
+git clone https://github.com/google/gasket-driver.git
+```
+
+```
+cd gasket-driver
+```
+
+```
+sudo debuild -us -uc -tc -b
+```
+
+```
+cd ..
+```
+
+```
+sudo dpkg -i gasket-dkms_1.0-18_all.deb
+```
+
+### Step 5: Set Up the udev Rule Add a udev rule to manage device permissions:
+```
+sudo sh -c "echo 'SUBSYSTEM==\"apex\", MODE=\"0660\", GROUP=\"apex\"' >> /etc/udev/rules.d/65-apex.rules"
+```
+
+```
+sudo groupadd apex && sudo adduser $USER apex
+```
+
+```
+sudo reboot
+```
+
+### Verify if the driver is loaded using the following command:
+```
+sudo lspci -v
 ```
 
 
