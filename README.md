@@ -101,6 +101,11 @@ sudo reboot
 sudo lspci -v
 ```
 
+```
+ls /dev/apex_*
+```
+
+
 
 
 
