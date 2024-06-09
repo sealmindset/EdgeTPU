@@ -11,6 +11,10 @@
 
 https://pineboards.io/blogs/tutorials/how-to-configure-the-google-coral-edge-tpu-on-the-raspberry-pi-5
 
+#### Yolov8 Ref:
+
+https://dagshub.com/Ultralytics/ultralytics/pulls/6583/files?page=0&path=docs%2Fen%2Fguides%2Fraspberry-pi.md
+
 ## Configure the Google Dual Coral Edge TPU on the Raspberry Pi 5
 ### Download the image locally
 
@@ -32,6 +36,11 @@ sudo sed -i '/\[all\]/a # Enable the PCIe External connector.\ndtparam=pciex1\nk
 
 ```
 sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y && apt autoremove -y
+```
+
+Allow pip without parameter
+```
+sudo rm /usr/lib/python3.11/EXTERNALLY-MANAGED
 ```
 
 ```
@@ -105,6 +114,46 @@ sudo lspci -v
 ls /dev/apex_*
 ```
 
+## Yolo v8
+
+### Install Necessary Packages
+
+#### Update the Raspberry Pi:
+
+```
+sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get autoremove -y
+```
+
+#### Install the ultralytics Python package:
+
+```
+pip3 install ultralytics
+```
+```
+sudo reboot
+```
+
+#### Initiate TCP Stream with Libcamera
+##### Start the TCP stream:
+```
+libcamera-vid -n -t 0 --width 1280 --height 960 --framerate 1 --inline --listen -o tcp://127.0.0.1:8888
+```
+
+##### Perform YOLOv8 Inference
+
+To perform inference with YOLOv8, you can use the following Python code snippet:
+
+```
+from ultralytics import YOLO
+
+model = YOLO('yolov8n.pt')
+results = model('tcp://127.0.0.1:8888', stream=True)
+
+while True:
+    for result in results:
+        boxes = result.boxes
+        probs = result.probs
+```
 
 
 
