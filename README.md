@@ -4,8 +4,8 @@
 - Raspberry Pi 5
 - Pineboard Coral Edge TPU HAT (Dual TPU Compatible)
 - Raspberry Pi Bookworm - 64 bit
-- Debian 1:6.6.31-1+rpt1 aarch64
-- Python 3.11.2
+  - Debian 6.6.32-v8+ #1769 aarch64
+- Python 3.9.19
 
 #### Pineboards Ref:
 
