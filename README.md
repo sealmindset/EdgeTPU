@@ -14,7 +14,7 @@ https://pineboards.io/blogs/tutorials/how-to-configure-the-google-coral-edge-tpu
 
 ## Configure the Google Dual Coral Edge TPU on the Raspberry Pi 5
 
-Write the RPI image to a SD Card. 
+Write the recommended RPI 64 image for Pi 5 to a SD Card. 
 
 ## Initial Boot
 ### Configure Hardware Settings
