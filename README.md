@@ -87,6 +87,32 @@ sudo reboot
 ### Verify if the driver is loaded using the following command:
 ```
 sudo lspci -nnn
-
-ls /dev/apex_*
 ```
+
+Now, verify the permission is set to RWX
+```
+ls -l /dev/apex_*
+```
+
+## Stress Pi
+```
+sudo apt-get install stress-ng
+```
+```
+stress-ng --cpu 4 --timeout 60s
+```
+
+## Test TPU
+
+Preq: Python 3.9
+```
+python3 tst_tpu.py
+```
+
+## Stress TPU
+```
+python3 stress-tpu.py
+```
+
+
+
