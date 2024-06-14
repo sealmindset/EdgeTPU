@@ -103,16 +103,14 @@ stress-ng --cpu 4 --timeout 60s
 ```
 
 ## Test TPU
+Verify the TPU's performance and stability underload when performing AI/ML tasks.
 
 Preq: Python 3.9
 ```
 python3 tst_tpu.py
 ```
 
-## Stress TPU
-```
-python3 stress-tpu.py
-```
+
 
 
 
