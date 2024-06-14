@@ -77,7 +77,7 @@ sudo dpkg -i gasket-dkms_1.0-18_all.deb
 
 ### Step 5: Set Up the udev Rule Add a udev rule to manage device permissions:
 ```
-sudo sh -c "echo 'SUBSYSTEM==\"apex\", MODE=\"0660\", GROUP=\"apex\"' >> /etc/udev/rules.d/65-apex.rules"
+sudo sh -c "echo 'SUBSYSTEM==\"apex\", MODE=\"0777\", GROUP=\"apex\"' >> /etc/udev/rules.d/65-apex.rules"
 
 sudo groupadd apex && sudo adduser $USER apex
 
