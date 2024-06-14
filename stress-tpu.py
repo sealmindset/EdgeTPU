@@ -1,4 +1,3 @@
-import logging
 import time
 import threading
 from pathlib import Path
@@ -6,6 +5,7 @@ from PIL import Image
 from pycoral.utils.edgetpu import make_interpreter
 from pycoral.adapters import common
 from pycoral.adapters import detect
+import logging
 
 # Setup logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s: %(message)s')
@@ -29,7 +29,7 @@ def stress_test_tpu(model_path, image_path, iterations=100):
 
         # Prepare input
         size = common.input_size(interpreter)
-        image = load_image(image_path).resize(size, Image.Resampling.LANCZOS)  # Updated resampling method
+        image = load_image(image_path).resize(size, Image.Resampling.LANCZOS)
 
         for i in range(iterations):
             start = time.perf_counter()
@@ -41,7 +41,6 @@ def stress_test_tpu(model_path, image_path, iterations=100):
 
     except Exception as e:
         logger.error(f"Error during stress test execution: {e}", exc_info=True)
-        return False
 
 def main():
     model_path = Path("test_data/ssd_mobilenet_v2_coco_quant_postprocess_edgetpu.tflite")
