@@ -14,6 +14,8 @@ https://pineboards.io/blogs/tutorials/how-to-configure-the-google-coral-edge-tpu
 ## Python 3.9.19
 https://github.com/sealmindset/EdgeTPU/wiki/Lowering-the-Python-version-on-a-Raspberry-Pi-5
 
+## Walkthrough Steps
+Refer to the [Wiki](https://github.com/sealmindset/EdgeTPU/wiki) for the steps for preparing the Raspberry Pi 5 and the Google Coral Dual Edge TPU with a HAT AI by Pineboards
 
 ## Configure the Google Dual Coral Edge TPU on the Raspberry Pi 5
 
